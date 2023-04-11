@@ -43,7 +43,7 @@ webSettings.setJavaScriptEnabled(true);
 ```
 
 9. Skapar en mapp under "app" där jag väljer "assets". I denna skapar jag en väldigt enkel html-sida.
-![](htmlsida.png)
+![htmlsida](htmlsida.png)
 
 10. Med "myWebView.loadUrl" kan jag peka på både den externa och den interna adressen. Se nedan.
 ```
@@ -73,7 +73,7 @@ myWebView.loadUrl("file:///android_asset/sida.html");
 ```
 
 12. Resultatbilder för extern och intern.
-![](Screenshot_20230411_163051.png)
-![](Screenshot_20230411_163105.png)
+![external](Screenshot_20230411_163051.png)
+![internal](Screenshot_20230411_163105.png)
 
     //a22chrfa
