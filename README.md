@@ -1,42 +1,79 @@
-
 # Rapport
 
-**Skriv din rapport här!**
+1. Klonar projektet och öppnar Android studio.
 
-_Du kan ta bort all text som finns sedan tidigare_.
+2. Ändrar namnet på appen till "Prototyp webview" i strings.xml
+``` 
+<string name="app_name">Prototyp webview</string>
+```
 
-## Följande grundsyn gäller dugga-svar:
+3. Ger appen access till internet med hjälp av nedan rad i AndroidManifest.xml
+``` 
+<uses-permission android:name="android.permission.INTERNET" />
+```
 
-- Ett kortfattat svar är att föredra. Svar som är längre än en sida text (skärmdumpar och programkod exkluderat) är onödigt långt.
-- Svaret skall ha minst en snutt programkod.
-- Svaret skall inkludera en kort övergripande förklarande text som redogör för vad respektive snutt programkod gör eller som svarar på annan teorifråga.
-- Svaret skall ha minst en skärmdump. Skärmdumpar skall illustrera exekvering av relevant programkod. Eventuell text i skärmdumpar måste vara läsbar.
-- I de fall detta efterfrågas, dela upp delar av ditt svar i för- och nackdelar. Dina för- respektive nackdelar skall vara i form av punktlistor med kortare stycken (3-4 meningar).
+4. Skapar ett webView-element i layout-filen (activity_main.xml) genom att byta ut textview-elementet mot ett webview-element.
+``` 
+    <WebView
+        android:id="@+id/my_webview"
+```
 
-Programkod ska se ut som exemplet nedan. Koden måste vara korrekt indenterad då den blir lättare att läsa vilket gör det lättare att hitta syntaktiska fel.
+5. För att lägga till ID läggs raden till som syns i koden ovan "android:id".
+
+6. Skapar en private member i MainActivity.java, se andra raden nedan.
+```
+public class MainActivity extends AppCompatActivity {
+private WebView myWebView;
+```
+Denna instansieras sedan under "onCreate()", se nedan.
 
 ```
-function errorCallback(error) {
-    switch(error.code) {
-        case error.PERMISSION_DENIED:
-            // Geolocation API stöds inte, gör något
-            break;
-        case error.POSITION_UNAVAILABLE:
-            // Misslyckat positionsanrop, gör något
-            break;
-        case error.UNKNOWN_ERROR:
-            // Okänt fel, gör något
-            break;
-    }
+myWebView = findViewById(R.id.my_webview);
+```
+
+7. Skapar en WebViewClient under "onCreate()".
+```
+myWebView.setWebViewClient(new WebViewClient());
+```
+
+8. Enablar javascript i WebViewClienten. Även denna ligger under "onCreate()".
+```
+WebSettings webSettings = myWebView.getSettings();
+webSettings.setJavaScriptEnabled(true);
+```
+
+9. Skapar en mapp under "app" där jag väljer "assets". I denna skapar jag en väldigt enkel html-sida.
+![](htmlsida.png)
+
+10. Med "myWebView.loadUrl" kan jag peka på både den externa och den interna adressen. Se nedan.
+```
+public class MainActivity extends AppCompatActivity {
+private WebView myWebView;
+public void showExternalWebPage(){
+myWebView.loadUrl("https://www.his.se");
+}
+public void showInternalWebPage(){
+myWebView.loadUrl("file:///android_asset/sida.html");
 }
 ```
 
-Bilder läggs i samma mapp som markdown-filen.
+11. Under "onOptionsItemSelected()" kallas funktionerna för extern och intern hemsida. se nedan.
+```
+        if (id == R.id.action_external_web) {
+            Log.d("==>","Will display external web page");
+            showExternalWebPage();
+            return true;
+        }
 
-![](android.png)
+        if (id == R.id.action_internal_web) {
+            Log.d("==>","Will display internal web page");
+            showInternalWebPage();
+            return true;
+        }
+```
 
-Läs gärna:
+12. Resultatbilder för extern och intern.
+![](Screenshot_20230411_163051.png)
+![](Screenshot_20230411_163105.png)
 
-- Boulos, M.N.K., Warren, J., Gong, J. & Yue, P. (2010) Web GIS in practice VIII: HTML5 and the canvas element for interactive online mapping. International journal of health geographics 9, 14. Shin, Y. &
-- Wunsche, B.C. (2013) A smartphone-based golf simulation exercise game for supporting arthritis patients. 2013 28th International Conference of Image and Vision Computing New Zealand (IVCNZ), IEEE, pp. 459–464.
-- Wohlin, C., Runeson, P., Höst, M., Ohlsson, M.C., Regnell, B., Wesslén, A. (2012) Experimentation in Software Engineering, Berlin, Heidelberg: Springer Berlin Heidelberg.
+    //a22chrfa
