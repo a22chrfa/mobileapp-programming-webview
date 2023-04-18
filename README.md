@@ -3,17 +3,17 @@
 1. Klonar projektet och öppnar Android studio.
 
 2. Ändrar namnet på appen till "Prototyp webview" i strings.xml
-``` 
+```
 <string name="app_name">Prototyp webview</string>
 ```
 
 3. Ger appen access till internet med hjälp av nedan rad i AndroidManifest.xml
-``` 
+```
 <uses-permission android:name="android.permission.INTERNET" />
 ```
 
 4. Skapar ett webView-element i layout-filen (activity_main.xml) genom att byta ut textview-elementet mot ett webview-element.
-``` 
+```
     <WebView
         android:id="@+id/my_webview"
 ```
@@ -76,4 +76,4 @@ myWebView.loadUrl("file:///android_asset/sida.html");
 ![Screenshot_20230411_163051.png](Screenshot_20230411_163051.png)
 ![Screenshot_20230411_163105.png](Screenshot_20230411_163105.png)
 
-    //a22chrfa
+//a22chrfa
