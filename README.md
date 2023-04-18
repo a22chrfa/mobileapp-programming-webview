@@ -70,7 +70,7 @@ myWebView.loadUrl("file:///android_asset/sida.html");
             showInternalWebPage();
             return true;
         }
-```
+``
 
 12. Resultatbilder för extern och intern.
 ![Screenshot_20230411_163051.png](Screenshot_20230411_163051.png)
